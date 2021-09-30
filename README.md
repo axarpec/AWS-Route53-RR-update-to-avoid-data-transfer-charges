@@ -36,6 +36,10 @@ Here are the Env Variable that you will have to define while deploying this Lamb
 hosted_zone_id : Specify hosted zone id of private hosted zone for VPC-XYZ.
 record_name : Specify the record name/FQDN which needs to be monitored.
 
+Here is the IAM policy which is required to run this lambda code :
+Along with default role where CW log access is given, you have to edit the role to have AmazonRoute53FullAccess.
+
+
 You can use the code from the file UpdateR53.py
 
 Stay tuned for more developements on this project
