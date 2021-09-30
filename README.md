@@ -21,25 +21,25 @@ Problem :
 - As VPC-ABC and VPC-XYZ are having same CIDR we cannot create vpc peering, hence the dns request for the ec2 instances in VPC-ABC will resolve to the public IP of ec2 instance. With that when Ec2 instances in VPC-DEF will access the resources of VPC-ABC, traffic will go to pubic IP, which will incure cost.
 
 Solution :
-We will create VPC peering between VPC-GHI and VPC-ABC with DNS resultion enabled.
-Create lambda in VPC-GHI which performs the DNS resolution for the specific URL and keeps on checking the private IP of Ec2 instance.
-Create Private Hosted Zone associated with the VPC-XYZ where we can create a RR for that URL maping to the private IP which is in same az as client.
-In case of change in the IP, lambda will go ahead and make changes in the route53 private hosted zone to update the record.
-With this, domain controllers in VPC-XYZ will be able to resolve hostname of ec2 instance in VPC-ABC to the private IP. Which will eventually help resources in VPC-DEF to resolve the resources of VPC-ABC to resolve to private IP. Which will help us reduce the data transfer cost.
+- We will create VPC peering between VPC-GHI and VPC-ABC with DNS resultion enabled.
+- Create lambda in VPC-GHI which performs the DNS resolution for the specific URL and keeps on checking the private IP of Ec2 instance.
+- Create Private Hosted Zone associated with the VPC-XYZ where we can create a RR for that URL maping to the private IP which is in same az as client.
+- In case of change in the IP, lambda will go ahead and make changes in the route53 private hosted zone to update the record.
+- With this, domain controllers in VPC-XYZ will be able to resolve hostname of ec2 instance in VPC-ABC to the private IP. Which will eventually help resources in VPC-DEF to resolve the resources of VPC-ABC to resolve to private IP. Which will help us reduce the data transfer cost.
 
 Instructions to lambda :
 
 Triger for Lambda :
-You can have CloudWatch event to run it every 5 min or 1 min.
+- You can have CloudWatch event to run it every 5 min or 1 min.
 
 Here are the Env Variable that you will have to define while deploying this Lambda code :
-hosted_zone_id : Specify hosted zone id of private hosted zone for VPC-XYZ.
-record_name : Specify the record name/FQDN which needs to be monitored.
+- hosted_zone_id : Specify hosted zone id of private hosted zone for VPC-XYZ.
+- record_name : Specify the record name/FQDN which needs to be monitored.
 
 Here is the IAM policy which is required to run this lambda code :
-Along with default role where CW log access is given, you have to edit the role to have AmazonRoute53FullAccess.
+- Along with default role where CW log access is given, you have to edit the role to have AmazonRoute53FullAccess.
 
 
-You can use the code from the file UpdateR53.py
+*You can use the code from the file UpdateR53.py
 
 Stay tuned for more developements on this project
