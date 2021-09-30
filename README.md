@@ -2,10 +2,10 @@
 
 Topology :
 Topology consiste of 3 VPC where 2 VPC are having the same CIDR(all part of same region).
-VPC-ABC - 10.10.0.0/16(default domain)
-VPC-DEF - 10.20.0.0/16(custom domain with domain controllers in vpc-xyz)
-VPC-GHI - 10.30.0.0/16(default domain)
-VPC-XYZ - 10.10.0.0/16(VPC with AWS managed Domain Controller)
+- VPC-ABC - 10.10.0.0/16(default domain)
+- VPC-DEF - 10.20.0.0/16(custom domain with domain controllers in vpc-xyz)
+- VPC-GHI - 10.30.0.0/16(default domain)
+- VPC-XYZ - 10.10.0.0/16(VPC with AWS managed Domain Controller)
 
 We have some serveres in VPC-ABC which needs to be accessed from the VPC-DEF.
 
