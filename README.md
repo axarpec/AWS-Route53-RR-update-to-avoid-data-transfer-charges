@@ -16,7 +16,7 @@ Additionally, VPC-DEF is having modified DHCP option set where we have custom do
 Idea is to launch the Ec2 instances in VPC-ABC and VPC-DEF in same AZ and have communication over private IP to save data transfer cost. We can create VPC peering to achieve the same. But we still have to take care about the DNS part.
 
 Problem : 
-- While accessing the ec2 instance EC2 instances in VPC-DEF will have to use hostname to access Ec2 in VPC-ABC.
+- While accessing the ec2 instance of VPC-ABC from EC2 instances in VPC-DEF, system will have to use hostname to access Ec2 in VPC-ABC.
 - DNS request for the ec2 instances in VPC-DEF goes to the Domain controller in VPC-XYZ.
 - As VPC-ABC and VPC-XYZ are having same CIDR we cannot create vpc peering, hence the dns request for the ec2 instances in VPC-ABC will resolve to the public IP of ec2 instance. With that when Ec2 instances in VPC-DEF will access the resources of VPC-ABC, traffic will go to pubic IP, which will incure cost.
 
