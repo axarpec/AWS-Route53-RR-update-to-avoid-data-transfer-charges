@@ -27,7 +27,7 @@ Solution :
 - In case of change in the IP, lambda will go ahead and make changes in the route53 private hosted zone to update the record.
 - With this, domain controllers in VPC-XYZ will be able to resolve hostname of ec2 instance in VPC-ABC to the private IP. Which will eventually help resources in VPC-DEF to resolve the resources of VPC-ABC to resolve to private IP. Which will help us reduce the data transfer cost.
 
-Instructions to lambda :
+Instructions for lambda code :
 
 Triger for Lambda :
 - You can have CloudWatch event to run it every 5 min or 1 min.
